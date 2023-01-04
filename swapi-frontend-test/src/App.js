@@ -1,7 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect } from "react";
+import { useSwapi } from "./providers/Swapi";
 
 function App() {
+  const { getSwapi } = useSwapi();
+  useEffect(() => {
+    getSwapi();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
