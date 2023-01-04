@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useSwapi } from "../../providers/Swapi";
 
 export const CharacterList = () => {
-  const { swapi, loading, getSwapi } = useSwapi();
+  const { swapi, loading, getSwapi, page } = useSwapi();
 
   useEffect(() => {
     getSwapi();
-  }, []);
+  }, [page]);
 
   const characters = loading === true ? null : swapi.data.results;
 
@@ -21,23 +21,20 @@ export const CharacterList = () => {
             <h3>{element.name}</h3>
             <div>
               <h4>Gender</h4>
-
               <p>{element.gender}</p>
             </div>
             <div>
               <h4>Species</h4>
               {element.species.length > 0
                 ? element.species.map((a) => {
-                    console.log(a);
                     return <p>{a[a.length - 2]}</p>;
                   })
                 : " Human"}
             </div>
             <ul>
               <h4>Films</h4>
-              {element.films.map((a, index) => {
-                console.log(a);
-                return <li key={index}>{a[a.length - 2]}</li>;
+              {element.films.map((a, id) => {
+                return <li key={id}>{a[a.length - 2]}</li>;
               })}
             </ul>
           </li>
