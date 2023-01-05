@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useSwapi } from "../../providers/Swapi";
 
 export const CharacterList = () => {
-  const { swapi, loading, getSwapi, page } = useSwapi();
+  const { swapi, loading, getSwapi } = useSwapi();
 
   useEffect(() => {
     getSwapi();
-  }, [page]);
+  }, []);
 
   const characters = loading === true ? null : swapi.data.results;
 
