@@ -8,7 +8,7 @@ export default function RoutesComponent() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/home" element={<Home />} />
-      <Route exact path="/char/:id" element={<CharPage />} />
+      <Route exact path="/char/:charId" element={<CharPage />} />
     </Routes>
   );
 }
