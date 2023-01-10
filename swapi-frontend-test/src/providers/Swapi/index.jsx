@@ -5,6 +5,7 @@ const SwapiContext = createContext([]);
 
 export const SwapiProvider = ({ children }) => {
   const [swapi, setSwapi] = useState([]);
+  const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getSwapi = () => {
@@ -12,11 +13,25 @@ export const SwapiProvider = ({ children }) => {
       setSwapi(res);
       setLoading(false);
     });
+
+    api.get(`films`).then((res) => {
+      setFilms(res);
+      console.log(res);
+      setLoading(false);
+    });
   };
 
   return (
     <SwapiContext.Provider
-      value={{ swapi, getSwapi, setSwapi, loading, setLoading }}
+      value={{
+        swapi,
+        setSwapi,
+        films,
+        setFilms,
+        loading,
+        setLoading,
+        getSwapi,
+      }}
     >
       {children}
     </SwapiContext.Provider>
