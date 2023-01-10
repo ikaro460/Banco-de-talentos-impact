@@ -1,14 +1,19 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 
 export const CharacterList = () => {
   const { swapi, loading, getSwapi } = useSwapi();
+  const navigate = useNavigate();
+  const characters = loading === true ? null : swapi.data.results;
 
   useEffect(() => {
     getSwapi();
   }, []);
 
-  const characters = loading === true ? null : swapi.data.results;
+  const handleClick = (charId) => {
+    navigate(`/char/${charId + 1}`);
+  };
 
   return (
     <ul>
@@ -17,7 +22,7 @@ export const CharacterList = () => {
         <p>loading</p>
       ) : (
         characters.map((element, index) => (
-          <li key={index}>
+          <li key={index} onClick={() => handleClick(index)}>
             <h3>{element.name}</h3>
             <div>
               <h4>Gender</h4>
@@ -34,7 +39,8 @@ export const CharacterList = () => {
             <ul>
               <h4>Films</h4>
               {element.films.map((a, id) => {
-                return <li key={id}>{a[a.length - 2]}</li>;
+                const filmId = a.split("/")[a.split("/").length - 2];
+                return <li key={id}>{filmId}</li>;
               })}
             </ul>
           </li>
