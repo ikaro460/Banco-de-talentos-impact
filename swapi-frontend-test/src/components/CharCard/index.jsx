@@ -1,8 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSwapi } from "../../providers/Swapi";
 import { StyledContainer } from "./styled";
 
 export const CharCard = ({ element, index }) => {
+  const { films } = useSwapi();
+
   const navigate = useNavigate();
 
   const handleClick = (charId) => {
@@ -29,7 +32,10 @@ export const CharCard = ({ element, index }) => {
           <h4>Films</h4>
           {element.films.map((a, id) => {
             const filmId = a.split("/")[a.split("/").length - 2];
-            return <li key={id}>{filmId}</li>;
+            const filmName = films.data.results.find(
+              (o) => o.episode_id == filmId
+            );
+            return <li key={id}>{filmName.title}</li>;
           })}
         </ul>
       </li>

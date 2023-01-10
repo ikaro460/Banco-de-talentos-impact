@@ -11,12 +11,10 @@ export const SwapiProvider = ({ children }) => {
   const getSwapi = () => {
     api.get(`people/?page=1`).then((res) => {
       setPeople(res);
-      setLoading(false);
     });
 
     api.get(`films`).then((res) => {
       setFilms(res);
-      console.log(res);
       setLoading(false);
     });
   };
