@@ -4,13 +4,13 @@ import { api } from "../../services/api";
 const SwapiContext = createContext([]);
 
 export const SwapiProvider = ({ children }) => {
-  const [swapi, setSwapi] = useState([]);
+  const [people, setPeople] = useState([]);
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getSwapi = () => {
     api.get(`people/?page=1`).then((res) => {
-      setSwapi(res);
+      setPeople(res);
       setLoading(false);
     });
 
@@ -24,8 +24,8 @@ export const SwapiProvider = ({ children }) => {
   return (
     <SwapiContext.Provider
       value={{
-        swapi,
-        setSwapi,
+        people,
+        setPeople,
         films,
         setFilms,
         loading,

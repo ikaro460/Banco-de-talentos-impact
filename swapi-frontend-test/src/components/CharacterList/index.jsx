@@ -3,8 +3,8 @@ import { useSwapi } from "../../providers/Swapi";
 import { CharCard } from "../CharCard";
 
 export const CharacterList = () => {
-  const { swapi, loading, getSwapi } = useSwapi();
-  const characters = loading === true ? null : swapi.data.results;
+  const { people, loading, getSwapi } = useSwapi();
+  const characters = loading === true ? null : people.data.results;
 
   useEffect(() => {
     getSwapi();
