@@ -17,8 +17,9 @@ export const PageBar = () => {
   };
 
   return (
-    <nav>
+    <nav className="pb-nav">
       <button
+        className="pb-nav__prev"
         onClick={() => {
           setLoading(true);
           handleClick("prev");
@@ -28,6 +29,7 @@ export const PageBar = () => {
       </button>
 
       <button
+        className="pb-nav__next"
         onClick={() => {
           setLoading(true);
           handleClick("next");

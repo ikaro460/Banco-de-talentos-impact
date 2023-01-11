@@ -11,13 +11,14 @@ export const CharacterList = () => {
   }, []);
 
   return (
-    <ul>
-      <h2>Character List</h2>
+    <ul className="cl-list">
+      <h2 className="cl-list__title">Character List</h2>
+
       {loading === true ? (
-        <p>loading</p>
+        <p className="cl-list__loading">loading</p>
       ) : (
         characters.map((element, index) => (
-          <li key={index}>
+          <li className="cl-list__card" key={index}>
             <CharCard element={element} index={index} />
           </li>
         ))

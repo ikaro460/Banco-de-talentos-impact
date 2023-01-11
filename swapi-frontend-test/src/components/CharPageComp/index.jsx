@@ -7,29 +7,35 @@ export const CharPageComp = ({ element }) => {
 
   return (
     <StyledContainer>
-      <div>
-        <h2>{element.name}</h2>
-        <h4>Gender</h4>
-        <p>{element.gender}</p>
+      <div className="cp-title">
+        <h2 className="cp-title__name">{element.name}</h2>
       </div>
-      <div>
-        <h4>Species</h4>
-        {element.species.length > 0
-          ? element.species.map((a) => {
-              return <p>{a[a.length - 2]}</p>;
-            })
-          : " Human"}
+      <div className="cp-info">
+        <h4 className="cp-info__gender-title">Gender</h4>
+        <p className="cp-info__gender-name">{element.gender}</p>
+        <h4 className="cp-info__species-title">Species</h4>
+        {element.species.length > 0 ? (
+          element.species.map((a) => {
+            return <p className="cp-info__species-name">{a[a.length - 2]}</p>;
+          })
+        ) : (
+          <p className="cp-info__species-name">Human</p>
+        )}
+        <ul className="cp-films">
+          <h4 className="cp-films__title">Films</h4>
+          {element.films.map((a, id) => {
+            const filmId = a.split("/")[a.split("/").length - 2];
+            const filmName = films.data.results.find(
+              (o) => o.episode_id == filmId
+            );
+            return (
+              <li className="cp-films__film-title" key={id}>
+                {filmName.title}
+              </li>
+            );
+          })}
+        </ul>
       </div>
-      <ul>
-        <h4>Films</h4>
-        {element.films.map((a, id) => {
-          const filmId = a.split("/")[a.split("/").length - 2];
-          const filmName = films.data.results.find(
-            (o) => o.episode_id == filmId
-          );
-          return <li key={id}>{filmName.title}</li>;
-        })}
-      </ul>
     </StyledContainer>
   );
 };

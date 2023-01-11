@@ -26,14 +26,17 @@ export const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className="sb-ctn">
       <input
+        className="sb-ctn__text"
         type="text"
         placeholder="Search here"
         onChange={handleChange}
         value={searchInput}
       />
-      <button onClick={handleClick}>Search</button>
+      <button className="sb-ctn__btn" onClick={handleClick}>
+        Search
+      </button>
     </div>
   );
 };

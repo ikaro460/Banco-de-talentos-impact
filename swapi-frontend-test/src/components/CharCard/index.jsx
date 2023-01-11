@@ -4,8 +4,6 @@ import { useSwapi } from "../../providers/Swapi";
 import { StyledContainer } from "./styled";
 
 export const CharCard = ({ element, index }) => {
-  const { films } = useSwapi();
-
   const navigate = useNavigate();
 
   const handleClick = (charId) => {
@@ -14,8 +12,8 @@ export const CharCard = ({ element, index }) => {
 
   return (
     <StyledContainer>
-      <div key={index} onClick={() => handleClick(index)}>
-        <h3>{element.name}</h3>
+      <div className="cc-card" key={index} onClick={() => handleClick(index)}>
+        <h3 className="cc-card__name">{element.name}</h3>
       </div>
     </StyledContainer>
   );
