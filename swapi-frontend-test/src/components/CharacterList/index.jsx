@@ -17,7 +17,9 @@ export const CharacterList = () => {
         <p>loading</p>
       ) : (
         characters.map((element, index) => (
-          <CharCard element={element} index={index} />
+          <li key={index}>
+            <CharCard element={element} index={index} />
+          </li>
         ))
       )}
     </ul>

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useSwapi } from "../../providers/Swapi";
 
 export const SearchBar = () => {
-  const { setSwapi, setLoading } = useSwapi();
+  const { setPeople, setLoading } = useSwapi();
 
   const [searchInput, setSearchInput] = useState("");
 
@@ -19,7 +19,7 @@ export const SearchBar = () => {
       axios
         .get(`https://swapi.dev/api/people/?search=${searchInput}`)
         .then((res) => {
-          setSwapi(res);
+          setPeople(res);
           setLoading(false);
         });
     }

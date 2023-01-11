@@ -7,10 +7,6 @@ export const CharPage = () => {
   const { people, films, getSwapi, loading } = useSwapi();
   const { charId } = useParams();
 
-  useEffect(() => {
-    getSwapi();
-  }, []);
-
   return (
     <div>
       <h1>CharPage</h1>

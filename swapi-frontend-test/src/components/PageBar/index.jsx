@@ -2,16 +2,16 @@ import axios from "axios";
 import { useSwapi } from "../../providers/Swapi";
 
 export const PageBar = () => {
-  const { swapi, setLoading, setSwapi } = useSwapi();
+  const { people, setLoading, setPeople } = useSwapi();
 
-  const HandleClick = (click) => {
-    const nextPage = swapi.data.next;
-    const prevPage = swapi.data.previous;
+  const handleClick = (click) => {
+    const nextPage = people.data.next;
+    const prevPage = people.data.previous;
 
     const url = click === "next" ? nextPage : prevPage;
 
     axios.get(url).then((res) => {
-      setSwapi(res);
+      setPeople(res);
       setLoading(false);
     });
   };
@@ -21,7 +21,7 @@ export const PageBar = () => {
       <button
         onClick={() => {
           setLoading(true);
-          HandleClick("prev");
+          handleClick("prev");
         }}
       >
         Previous Page
@@ -30,7 +30,7 @@ export const PageBar = () => {
       <button
         onClick={() => {
           setLoading(true);
-          HandleClick("next");
+          handleClick("next");
         }}
       >
         Next Page

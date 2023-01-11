@@ -14,9 +14,9 @@ export const CharCard = ({ element, index }) => {
 
   return (
     <StyledContainer>
-      <li key={index} onClick={() => handleClick(index)}>
+      <div key={index} onClick={() => handleClick(index)}>
         <h3>{element.name}</h3>
-      </li>
+      </div>
     </StyledContainer>
   );
 };
