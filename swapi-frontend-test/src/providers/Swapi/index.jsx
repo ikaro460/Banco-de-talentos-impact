@@ -5,20 +5,41 @@ const SwapiContext = createContext([]);
 
 export const SwapiProvider = ({ children }) => {
   const [people, setPeople] = useState([]);
+  const [species, setSpecies] = useState([]);
+  const [films, setFilms] = useState([]);
 
   const [filteredPeople, setFilteredPeople] = useState([]);
   const [filterIsOn, setFilterIsOn] = useState(false);
-  const [films, setFilms] = useState([]);
+
   const [loading, setLoading] = useState(true);
+
   const [loadingFilms, setLoadingFilms] = useState(true);
   const [nextPage, setNextPage] = useState("");
 
   async function getPeople() {
-    await api.get(`people/?page=1`).then((res) => {
-      setPeople(res.data.results);
-      setNextPage(res.data.next);
-      setLoading(false);
-    });
+    let aux = [];
+    for (let i = 1; i < 10; i++) {
+      await api.get(`people/?page=${i}`).then((res) => {
+        aux.push(...res.data.results);
+      });
+    }
+    console.log("people", aux);
+    setPeople(aux);
+    localStorage.setItem("people", JSON.stringify(aux));
+    console.log("getted");
+  }
+
+  async function getSpecies() {
+    let aux = [];
+    for (let i = 1; i < 5; i++) {
+      await api.get(`species/?page=${i}`).then((res) => {
+        aux.push(...res.data.results);
+      });
+    }
+    console.log("species", aux);
+    setSpecies(aux);
+    localStorage.setItem("species", JSON.stringify(aux));
+    console.log("getted");
   }
 
   async function getFilms() {
@@ -26,7 +47,9 @@ export const SwapiProvider = ({ children }) => {
     await api
       .get(`films/`)
       .then((res) => {
+        console.log("films", res.data.results);
         setFilms(res.data.results);
+        localStorage.setItem("films", JSON.stringify(res.data.results));
         setLoadingFilms(false);
       })
       .catch((error) => {
@@ -39,20 +62,23 @@ export const SwapiProvider = ({ children }) => {
       value={{
         people,
         setPeople,
+        getPeople,
+        species,
+        setSpecies,
+        getSpecies,
+        films,
+        setFilms,
+        getFilms,
         filteredPeople,
         setFilteredPeople,
         filterIsOn,
         setFilterIsOn,
         nextPage,
         setNextPage,
-        films,
-        setFilms,
         loading,
         setLoading,
         loadingFilms,
         setLoadingFilms,
-        getPeople,
-        getFilms,
       }}
     >
       {children}
