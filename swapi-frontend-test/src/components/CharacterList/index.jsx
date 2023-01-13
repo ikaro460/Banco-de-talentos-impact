@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 import { CharCard } from "../CharCard";
 
 export const CharacterList = () => {
   const {
-    people,
     setPeople,
+    species,
+    films,
     loading,
     setLoading,
     getPeople,
@@ -18,32 +19,38 @@ export const CharacterList = () => {
     filteredPeople,
   } = useSwapi();
 
-  const characters =
-    loading === true ? null : filterIsOn ? filteredPeople : people;
-
   const { pathname } = useLocation();
   const storedData = localStorage.getItem("people");
-  const storedPeople = JSON.parse(storedData);
+  const people = JSON.parse(storedData);
+  const characters = filterIsOn ? filteredPeople : people;
+  const navigate = useNavigate();
 
   //FIRST GET ON PEOPLE ENDPOINT, CASE ITS FILTERED IT CHANGES TO FILTERED
   useEffect(() => {
     console.log("get");
+    console.log(people, species, films);
+
+    if (!people) {
+      navigate("/");
+    }
+
     if (pathname === "/filtered") {
       setFilterIsOn(true);
       setLoading(false);
-    } else if (pathname === "/home" && people.length === 0) {
-      getPeople();
+    } else if (pathname === "/home") {
       setFilterIsOn(false);
+      setPeople(people);
+      setLoading(false);
     }
   }, [pathname]);
 
   //UPDATE LOCALSTORAGE EVERY TIME PEOPLE CHANGES
-  useEffect(() => {
+  /*   useEffect(() => {
     if (people.length > 0) {
       console.log(people);
       localStorage.setItem("people", JSON.stringify(people));
     }
-  }, [people]);
+  }, [people]); */
 
   //HANDLE SHOW MORE BUTTON
   async function handleClick() {
@@ -65,7 +72,7 @@ export const CharacterList = () => {
             <li className="cl-list__card" key={index}>
               <CharCard
                 element={element}
-                index={storedPeople.findIndex((a) => a.name === element.name)}
+                index={people.findIndex((a) => a.name === element.name)}
               />
             </li>
           ))}
