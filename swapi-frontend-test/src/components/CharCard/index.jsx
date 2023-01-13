@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useSwapi } from "../../providers/Swapi";
 import { StyledContainer } from "./styled";
 
 export const CharCard = ({ element, index }) => {

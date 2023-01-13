@@ -5,8 +5,12 @@ const SwapiContext = createContext([]);
 
 export const SwapiProvider = ({ children }) => {
   const [people, setPeople] = useState([]);
+
+  const [filteredPeople, setFilteredPeople] = useState([]);
+  const [filterIsOn, setFilterIsOn] = useState(false);
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingFilms, setLoadingFilms] = useState(true);
   const [nextPage, setNextPage] = useState("");
 
   async function getPeople() {
@@ -18,10 +22,16 @@ export const SwapiProvider = ({ children }) => {
   }
 
   async function getFilms() {
-    await api.get(`films`).then((res) => {
-      setFilms([...films, ...res.data.results]);
-      setLoading(false);
-    });
+    setLoadingFilms(true);
+    await api
+      .get(`films/`)
+      .then((res) => {
+        setFilms(res.data.results);
+        setLoadingFilms(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -29,12 +39,18 @@ export const SwapiProvider = ({ children }) => {
       value={{
         people,
         setPeople,
+        filteredPeople,
+        setFilteredPeople,
+        filterIsOn,
+        setFilterIsOn,
         nextPage,
         setNextPage,
         films,
         setFilms,
         loading,
         setLoading,
+        loadingFilms,
+        setLoadingFilms,
         getPeople,
         getFilms,
       }}
