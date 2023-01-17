@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CharacterList } from "../../components/CharacterList";
+import { Filters } from "../../components/Filters";
 import { PageBar } from "../../components/PageBar";
 import { SearchBar } from "../../components/SearchBar";
 
@@ -12,6 +13,7 @@ export const Home = () => {
       <h1 onClick={() => navigate("/home")}>Home</h1>
       <PageBar />
       <SearchBar />
+      <Filters />
       <CharacterList />
     </div>
   );
