@@ -23,10 +23,8 @@ export const SwapiProvider = ({ children }) => {
         aux.push(...res.data.results);
       });
     }
-    console.log("people", aux);
     setPeople(aux);
     localStorage.setItem("people", JSON.stringify(aux));
-    console.log("getted");
   }
 
   async function getSpecies() {
@@ -36,10 +34,8 @@ export const SwapiProvider = ({ children }) => {
         aux.push(...res.data.results);
       });
     }
-    console.log("species", aux);
     setSpecies(aux);
     localStorage.setItem("species", JSON.stringify(aux));
-    console.log("getted");
   }
 
   async function getFilms() {
@@ -47,7 +43,6 @@ export const SwapiProvider = ({ children }) => {
     await api
       .get(`films/`)
       .then((res) => {
-        console.log("films", res.data.results);
         setFilms(res.data.results);
         localStorage.setItem("films", JSON.stringify(res.data.results));
         setLoadingFilms(false);

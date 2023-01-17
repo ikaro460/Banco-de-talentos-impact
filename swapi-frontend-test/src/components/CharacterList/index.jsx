@@ -1,17 +1,14 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 import { CharCard } from "../CharCard";
 
 export const CharacterList = () => {
   const {
     setPeople,
-    species,
-    films,
     loading,
     setLoading,
-    getPeople,
     nextPage,
     setNextPage,
     filterIsOn,
@@ -27,7 +24,6 @@ export const CharacterList = () => {
 
   //CHECK IF ITS LOADED AND FILTERED
   useEffect(() => {
-    console.log("get");
     //console.log(people, species, films);
 
     if (!people) {
@@ -42,14 +38,6 @@ export const CharacterList = () => {
       setLoading(false);
     }
   }, [pathname]);
-
-  //UPDATE LOCALSTORAGE EVERY TIME PEOPLE CHANGES
-  /*   useEffect(() => {
-    if (people.length > 0) {
-      console.log(people);
-      localStorage.setItem("people", JSON.stringify(people));
-    }
-  }, [people]); */
 
   //HANDLE SHOW MORE BUTTON
   async function handleClick() {
@@ -66,7 +54,7 @@ export const CharacterList = () => {
       {loading === true ? (
         <p className="cl-list__loading">loading</p>
       ) : (
-        <ul>
+        <ul className="cl-list__box">
           {characters.map((element, index) => (
             <li className="cl-list__card" key={index}>
               <CharCard
