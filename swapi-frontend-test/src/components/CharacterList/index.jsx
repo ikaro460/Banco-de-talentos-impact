@@ -25,10 +25,10 @@ export const CharacterList = () => {
   const characters = filterIsOn ? filteredPeople : people;
   const navigate = useNavigate();
 
-  //FIRST GET ON PEOPLE ENDPOINT, CASE ITS FILTERED IT CHANGES TO FILTERED
+  //CHECK IF ITS LOADED AND FILTERED
   useEffect(() => {
     console.log("get");
-    console.log(people, species, films);
+    //console.log(people, species, films);
 
     if (!people) {
       navigate("/");
@@ -36,7 +36,6 @@ export const CharacterList = () => {
 
     if (pathname === "/filtered") {
       setFilterIsOn(true);
-      setLoading(false);
     } else if (pathname === "/home") {
       setFilterIsOn(false);
       setPeople(people);

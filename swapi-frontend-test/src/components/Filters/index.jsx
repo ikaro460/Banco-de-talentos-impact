@@ -1,16 +1,24 @@
 import React from "react";
 import { useSwapi } from "../../providers/Swapi";
+import { filterUtils } from "../../utils/filterUtils";
 
 export const Filters = () => {
-  const { people, setFilteredPeople, setFilterIsOn } = useSwapi();
+  const { filteredPeople, setFilteredPeople, filterIsOn, setFilterIsOn } =
+    useSwapi();
 
-  const handleChange = (event) => {
+  const people = JSON.parse(localStorage.getItem("people"));
+  const species = JSON.parse(localStorage.getItem("species"));
+  const films = JSON.parse(localStorage.getItem("films"));
+
+  const handleChange = (filterType, event) => {
     event.preventDefault();
-    const gender = event.target.value;
-    const filteredPeople = people.filter((a) => a.gender === gender);
+    const filter = event.target.value;
 
-    setFilteredPeople(filteredPeople);
-    if (gender === "all") {
+    const result = filterUtils(filter, filterType, people);
+    console.log(result);
+
+    setFilteredPeople(result);
+    if (filter === "all") {
       setFilterIsOn(false);
     } else {
       setFilterIsOn(true);
@@ -19,25 +27,34 @@ export const Filters = () => {
 
   return (
     <div>
-      <h2>Filters</h2>
       <label>Gender</label>
-      <select onChange={handleChange}>
+      <select onChange={handleChange.bind(this, "gender")}>
         <option defaultValue value={"all"}>
           All
         </option>
         <option value={"male"}>Male</option>
         <option value={"female"}>Female</option>
-        <option value={"n/a"}>None</option>
+        <option value={"n/a"}>n/a</option>
       </select>
 
       <label>Species</label>
-      <select onChange={handleChange}>
+      <select onChange={handleChange.bind(this, "species")}>
         <option defaultValue value={"all"}>
           All
         </option>
-        <option value={"male"}>Male</option>
-        <option value={"female"}>Female</option>
-        <option value={"n/a"}>None</option>
+        {species.map((a, index) => {
+          return <option value={index}>{a.name}</option>;
+        })}
+      </select>
+
+      <label>Films</label>
+      <select onChange={handleChange.bind(this, "films")}>
+        <option defaultValue value={"all"}>
+          All
+        </option>
+        {films.map((a, index) => {
+          return <option value={index + 1}>{a.title}</option>;
+        })}
       </select>
     </div>
   );

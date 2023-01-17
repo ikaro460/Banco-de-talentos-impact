@@ -7,8 +7,9 @@ import { StyledContainer } from "./styled";
 export const CharPageComp = ({ element }) => {
   const { films, loadingFilms, getFilms, setFilteredPeople } = useSwapi();
   const navigate = useNavigate();
-  const storedPeople = localStorage.getItem("people");
-  const people = JSON.parse(storedPeople);
+
+  const people = JSON.parse(localStorage.getItem("people"));
+  const species = JSON.parse(localStorage.getItem("species"));
 
   useEffect(() => {
     getFilms();
@@ -42,16 +43,21 @@ export const CharPageComp = ({ element }) => {
           element.species.map((a) => {
             return (
               <p
-                onClick={() => handleClick(a, "species")}
+                onClick={() =>
+                  handleClick(
+                    a.split("/")[a.split("/").length - 2] - 1,
+                    "species"
+                  )
+                }
                 className="cp-info__species-name"
               >
-                {a[a.length - 2]}
+                {species[a.split("/")[a.split("/").length - 2] - 1].name}
               </p>
             );
           })
         ) : (
           <p
-            onClick={() => handleClick("human", "species")}
+            onClick={() => handleClick("0", "species")}
             className="cp-info__species-name"
           >
             Human
@@ -64,11 +70,15 @@ export const CharPageComp = ({ element }) => {
           <ul className="cp-films">
             {element.films.map((a, index) => {
               const filmId = a.split("/")[a.split("/").length - 2];
-              const filmName = films.find((o) => o.episode_id == filmId);
+              const filmName = films[filmId - 1].title;
 
               return (
-                <li className="cp-films__film-title" key={index}>
-                  {filmName.title}
+                <li
+                  onClick={() => handleClick(index + 1, "films")}
+                  className="cp-films__film-title"
+                  key={index}
+                >
+                  {filmName}
                 </li>
               );
             })}
