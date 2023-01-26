@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 import { filterUtils } from "../../utils/filterUtils";
+import { StyledContainer } from "./styled";
 
 export const Filters = () => {
   const { setFilteredPeople, setFilterIsOn } = useSwapi();
@@ -58,39 +59,55 @@ export const Filters = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Gender</label>
-        <select name="gender" onChange={handleChange}>
-          <option defaultValue value={"all"}>
-            All
-          </option>
-          <option value={"male"}>Male</option>
-          <option value={"female"}>Female</option>
-          <option value={"n/a"}>n/a</option>
-        </select>
+    <StyledContainer>
+      <div className="ft">
+        <form onSubmit={handleSubmit}>
+          <label>Gender</label>
+          <select
+            className="ft-form__select"
+            name="gender"
+            onChange={handleChange}
+          >
+            <option className="ft-form__option" defaultValue value={"all"}>
+              All
+            </option>
+            <option value={"male"}>Male</option>
+            <option value={"female"}>Female</option>
+            <option value={"n/a"}>n/a</option>
+          </select>
 
-        <label>Species</label>
-        <select name="species" onChange={handleChange}>
-          <option defaultValue value={"all"}>
-            All
-          </option>
-          {species.map((a, index) => {
-            return <option value={index}>{a.name}</option>;
-          })}
-        </select>
+          <label>Species</label>
+          <select
+            className="ft-form__select"
+            name="species"
+            onChange={handleChange}
+          >
+            <option defaultValue value={"all"}>
+              All
+            </option>
+            {species.map((a, index) => {
+              return <option value={index}>{a.name}</option>;
+            })}
+          </select>
 
-        <label>Films</label>
-        <select name="films" onChange={handleChange}>
-          <option defaultValue value={"all"}>
-            All
-          </option>
-          {films.map((a, index) => {
-            return <option value={index + 1}>{a.title}</option>;
-          })}
-        </select>
-        <button type="submit">Filter</button>
-      </form>
-    </div>
+          <label>Films</label>
+          <select
+            className="ft-form__select"
+            name="films"
+            onChange={handleChange}
+          >
+            <option defaultValue value={"all"}>
+              All
+            </option>
+            {films.map((a, index) => {
+              return <option value={index + 1}>{a.title}</option>;
+            })}
+          </select>
+          <button className="ft-form__button" type="submit">
+            Filter
+          </button>
+        </form>
+      </div>
+    </StyledContainer>
   );
 };

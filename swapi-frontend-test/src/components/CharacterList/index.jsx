@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 import { CharCard } from "../CharCard";
+import { PageBar } from "../PageBar";
+import { StyledContainer } from "./styled";
 
 export const CharacterList = () => {
   const {
@@ -48,24 +50,26 @@ export const CharacterList = () => {
   }
 
   return (
-    <div className="cl-list">
-      <h2 className="cl-list__title">Character List</h2>
+    <StyledContainer>
+      <div className="cl-list">
+        <h2 className="cl-list__title">Character List</h2>
+        <PageBar />
 
-      {loading === true ? (
-        <p className="cl-list__loading">loading</p>
-      ) : (
-        <ul className="cl-list__box">
-          {characters.map((element, index) => (
-            <li className="cl-list__card" key={index}>
-              <CharCard
-                element={element}
-                index={people.findIndex((a) => a.name === element.name)}
-              />
-            </li>
-          ))}
-          <button onClick={() => handleClick()}>Show More</button>
-        </ul>
-      )}
-    </div>
+        {loading === true ? (
+          <p className="cl-list__loading">loading</p>
+        ) : (
+          <ul className="cl-list__box">
+            {characters.map((element, index) => (
+              <li className="cl-list__card" key={index}>
+                <CharCard
+                  element={element}
+                  index={people.findIndex((a) => a.name === element.name)}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </StyledContainer>
   );
 };
