@@ -33,7 +33,6 @@ export const Filters = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
 
     const array1 =
       formData.gender === "all"
@@ -52,10 +51,8 @@ export const Filters = () => {
       (element) => array2.includes(element) && array3.includes(element)
     );
 
-    console.log(commonElements);
-
     setFilteredPeople(commonElements);
-    navigate("/filtered");
+    navigate("/filtered/1");
   };
 
   return (

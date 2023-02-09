@@ -1,19 +1,22 @@
 import axios from "axios";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 
-export const PageBar = () => {
+export const PageBar = ({ howManyPages }) => {
   const { people, setLoading, setPeople } = useSwapi();
+  const { pathname } = useLocation();
+  const pageNumber = pathname.split("/")[2];
+  const navigate = useNavigate();
 
-  const handleClick = (click) => {
-    const nextPage = people.data.next;
-    const prevPage = people.data.previous;
+  const handleClick = (nextOrPrev) => {
+    //CHECK BUTTON AND IF PAGE IS NOT THE LAST
+    if (nextOrPrev === "next" && pageNumber < howManyPages) {
+      navigate(`/${pathname.split("/")[1]}/${Number(pageNumber) + 1}`);
 
-    const url = click === "next" ? nextPage : prevPage;
-
-    axios.get(url).then((res) => {
-      setPeople(res);
-      setLoading(false);
-    });
+      //CHECK BUTTON AND IF PAGE IS NOT THE FIRST
+    } else if (nextOrPrev === "prev" && pageNumber > 1) {
+      navigate(`/${pathname.split("/")[1]}/${Number(pageNumber) - 1}`);
+    }
   };
 
   return (
@@ -21,21 +24,18 @@ export const PageBar = () => {
       <button
         className="pb-nav__prev"
         onClick={() => {
-          setLoading(true);
           handleClick("prev");
         }}
       >
-        Previous Page
+        Previous
       </button>
-
       <button
         className="pb-nav__next"
         onClick={() => {
-          setLoading(true);
           handleClick("next");
         }}
       >
-        Next Page
+        Next
       </button>
     </nav>
   );

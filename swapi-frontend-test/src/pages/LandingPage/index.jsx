@@ -34,9 +34,13 @@ export const LandingPage = () => {
   return (
     <div>
       <h1>LandingPage</h1>
-      <Link to="/home">
-        {loading ? <LoadingBar progress={progress} /> : <button>Enter</button>}
-      </Link>
+      {loading ? (
+        <LoadingBar progress={progress} />
+      ) : (
+        <Link to="/home/1">
+          <button>Enter</button>
+        </Link>
+      )}
     </div>
   );
 };
