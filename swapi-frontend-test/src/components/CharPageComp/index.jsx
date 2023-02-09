@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
+import { avatarPics } from "../../utils/avatarPics";
 import { filterUtils } from "../../utils/filterUtils";
 import { StyledContainer } from "./styled";
 
@@ -10,6 +11,7 @@ export const CharPageComp = ({ element }) => {
 
   const people = JSON.parse(localStorage.getItem("people"));
   const species = JSON.parse(localStorage.getItem("species"));
+  const imgSrc = avatarPics.filter((a) => a.name === element.name);
 
   useEffect(() => {
     getFilms();
@@ -22,12 +24,17 @@ export const CharPageComp = ({ element }) => {
     const result = filterUtils(filter, filterType, people);
     setFilteredPeople(result);
 
-    navigate(`/filtered`);
+    navigate(`/filtered/1`);
   };
 
   return (
     <StyledContainer>
       <div className="cp-title">
+        <img
+          className="cc-card__img"
+          src={imgSrc.length > 0 ? imgSrc[0].photo_url : null}
+          alt="avatar"
+        />
         <h2 className="cp-title__name">{element.name}</h2>
       </div>
       <div className="cp-info">

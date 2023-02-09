@@ -16,7 +16,7 @@ export const SearchBar = () => {
 
   async function handleClick(e) {
     setLoading(true);
-    navigate("/filtered");
+    navigate("/filtered/1");
 
     if (searchInput.length > 0) {
       await axios

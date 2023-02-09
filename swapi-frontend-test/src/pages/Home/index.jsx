@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <StyledContainer>
       <div className="hp-page">
-        <h1 className="hp-page__title" onClick={() => navigate("/home")}>
+        <h1 className="hp-page__title" onClick={() => navigate("/home/1")}>
           Home
         </h1>
         <div className="hp-page__nav">

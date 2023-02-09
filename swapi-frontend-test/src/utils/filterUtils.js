@@ -1,7 +1,4 @@
 export const filterUtils = (filter, filterType, people) => {
-  console.log(filterType);
-  console.log(filter);
-
   const result =
     filterType === "gender"
       ? people.filter((a) => a.gender === filter)
@@ -27,6 +24,5 @@ export const filterUtils = (filter, filterType, people) => {
           a.films.find((f) => f.split("/")[f.split("/").length - 2] == filter)
         )
       : null;
-  console.log("filter result", result);
   return result;
 };
