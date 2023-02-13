@@ -1,46 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import LoadingBar from "../../components/LoadingBar";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useSwapi } from "../../providers/Swapi";
 
 export const LandingPage = () => {
-  const {
-    people,
-    getPeople,
-    films,
-    getFilms,
-    getSpecies,
-    loading,
-    setLoading,
-  } = useSwapi();
-  const [progress, setProgress] = useState(0);
+  const { getPeople, getFilms, getSpecies, setLoading } = useSwapi();
+  const [progress, setProgress] = useState("Loading Films");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
     async function getSwapi() {
       await getFilms();
-      setProgress(33);
+      setProgress("Loading species");
 
       await getSpecies();
-      setProgress(66);
+      setProgress("Loading characters");
 
       await getPeople();
-      setProgress(100);
-      setLoading(false);
+      setProgress("Complete");
+
+      navigate("/home/1");
     }
     getSwapi();
   }, []);
 
   return (
     <div>
-      <h1>LandingPage</h1>
-      {loading ? (
-        <LoadingBar progress={progress} />
-      ) : (
-        <Link to="/home/1">
-          <button>Enter</button>
-        </Link>
-      )}
+      <FontAwesomeIcon icon={faSpinner} spin />
+      <h2>{progress}</h2>
     </div>
   );
 };

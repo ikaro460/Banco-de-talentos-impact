@@ -5,7 +5,7 @@ import { filterUtils } from "../../utils/filterUtils";
 import { StyledContainer } from "./styled";
 
 export const Filters = () => {
-  const { setFilteredPeople, setFilterIsOn } = useSwapi();
+  const { setFilteredPeople } = useSwapi();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
