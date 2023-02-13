@@ -55,7 +55,6 @@ export const SwapiProvider = ({ children }) => {
   return (
     <SwapiContext.Provider
       value={{
-        people,
         setPeople,
         getPeople,
         species,
