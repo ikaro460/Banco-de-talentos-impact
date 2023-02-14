@@ -16,9 +16,4 @@ export const StyledContainer = styled.div`
     justify-content: center;
     align-items: center;
   }
-
-  .hp-page__nav {
-    display: flex;
-    flex-direction: column;
-  }
 `;

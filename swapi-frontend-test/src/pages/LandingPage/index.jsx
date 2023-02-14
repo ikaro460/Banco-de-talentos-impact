@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useSwapi } from "../../providers/Swapi";
+import { NavBar } from "../../components/NavBar";
 
 export const LandingPage = () => {
   const { getPeople, getFilms, getSpecies, setLoading } = useSwapi();
@@ -28,6 +29,7 @@ export const LandingPage = () => {
 
   return (
     <div>
+      <NavBar />
       <FontAwesomeIcon icon={faSpinner} spin />
       <h2>{progress}</h2>
     </div>
