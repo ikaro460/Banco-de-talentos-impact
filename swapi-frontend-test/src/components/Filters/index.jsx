@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 import { filterUtils } from "../../utils/filterUtils";
@@ -14,12 +14,16 @@ export const Filters = () => {
     films: "all",
   });
 
+  useEffect(() => {
+    handleSubmit();
+  }, [formData]);
+
   const people = JSON.parse(localStorage.getItem("people"));
   const species = JSON.parse(localStorage.getItem("species"));
   const films = JSON.parse(localStorage.getItem("films"));
 
   const handleChange = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
     const { name, value } = event.target;
     setFormData({
@@ -28,11 +32,10 @@ export const Filters = () => {
     });
 
     //setFilteredPeople(result);
-    //handleSubmit();
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
     const array1 =
       formData.gender === "all"
