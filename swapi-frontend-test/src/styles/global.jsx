@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import backgroundImage from "../assets/death-star.jpg";
 
 export default createGlobalStyle`
   
@@ -13,6 +14,10 @@ export default createGlobalStyle`
         --button-grey: #e8e8e8;
         --purple-1: #6c80be
     }
+
+  #root{
+    width: 100%;
+  }
   
   body{
     color: var(--post-white);
@@ -20,11 +25,8 @@ export default createGlobalStyle`
     justify-content: center;
     font-weight: 400;
     font-family: sans-serif, "Source Sans Pro";
-    background-color: var(--background-black);
+    background-image: url(${backgroundImage});
 }
-  .App {
-    padding: 25px;
-  }
   .App-header {
     display:flex;
     flex-direction: column;

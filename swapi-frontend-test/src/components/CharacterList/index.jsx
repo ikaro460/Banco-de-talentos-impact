@@ -52,29 +52,24 @@ export const CharacterList = () => {
     return array.slice(page * 12, (page + 1) * 12);
   }
   const paginatedItems = paginateArray(characters, Number(pageNumber));
-  console.log(paginatedItems);
+
   return (
     <StyledContainer>
       <div className="cl-list">
         <h2 className="cl-list__title">Character List</h2>
-
-        {loading === true ? (
-          <p className="cl-list__loading">loading</p>
-        ) : (
-          <ul className="cl-list__box">
-            {paginatedItems.map((element, index) => {
-              console.log(element);
-              return (
-                <li className="cl-list__card" key={index}>
-                  <CharCard
-                    element={element}
-                    index={people.findIndex((a) => a.name === element.name)}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        <ul className="cl-list__box">
+          {paginatedItems.map((element, index) => {
+            console.log(element);
+            return (
+              <li className="cl-list__card" key={index}>
+                <CharCard
+                  element={element}
+                  index={people.findIndex((a) => a.name === element.name)}
+                />
+              </li>
+            );
+          })}
+        </ul>
       </div>
       <PageBar howManyPages={Math.ceil(characters.length / 12)} />
     </StyledContainer>
