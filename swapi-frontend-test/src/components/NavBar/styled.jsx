@@ -8,10 +8,17 @@ export const StyledContainer = styled.div`
   height: 50px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  h1 {
-    margin: 0 10px;
+  .nb-logo {
+    cursor: pointer;
+    margin: 5px;
     padding: 0;
-    font-size: 35px;
+    display: flex;
+    justify-content: center;
+  }
+  .nb-logo__img {
+    width: 80px;
+    height: 35px;
   }
 `;

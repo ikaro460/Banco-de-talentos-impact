@@ -8,8 +8,8 @@ import { StyledContainer } from "./styled";
 export const Home = () => {
   return (
     <StyledContainer>
+      <NavBar />
       <div className="hp-page">
-        <NavBar />
         <div className="hp-page__filters">
           <Filters />
         </div>
