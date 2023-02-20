@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
+import { StyledContainer } from "./styled";
 
 export const SearchBar = () => {
   const { setFilteredPeople, setLoading } = useSwapi();
@@ -29,7 +30,7 @@ export const SearchBar = () => {
   }
 
   return (
-    <div className="sb-ctn">
+    <StyledContainer className="sb-ctn">
       <input
         className="sb-ctn__text"
         type="text"
@@ -40,6 +41,6 @@ export const SearchBar = () => {
       <button className="sb-ctn__btn" onClick={handleClick}>
         Search
       </button>
-    </div>
+    </StyledContainer>
   );
 };
