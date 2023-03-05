@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  width: 900px;
-  border: 2px solid yellow;
+  width: 100%;
+  border: 2px solid red;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   .hp-page {
-    width: 900px;
-    border: 2px solid yellow;
+    margin: 80px;
+    width: 90%;
+    background-color: var(--tp-black);
     display: flex;
     flex-direction: column;
     justify-content: center;

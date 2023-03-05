@@ -1,6 +1,10 @@
 import axios from "axios";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import { StyledContainer } from "./styled";
+import { CharacterList } from "../CharacterList";
 
 export const PageBar = ({ howManyPages }) => {
   const { people, setLoading, setPeople } = useSwapi();
@@ -20,23 +24,25 @@ export const PageBar = ({ howManyPages }) => {
   };
 
   return (
-    <nav className="pb-nav">
-      <button
-        className="pb-nav__prev"
-        onClick={() => {
-          handleClick("prev");
-        }}
-      >
-        Previous
-      </button>
-      <button
-        className="pb-nav__next"
-        onClick={() => {
-          handleClick("next");
-        }}
-      >
-        Next
-      </button>
-    </nav>
+    <StyledContainer>
+      <nav className="pb-nav">
+        <button
+          className="pb-nav__btn"
+          onClick={() => {
+            handleClick("prev");
+          }}
+        >
+          <FontAwesomeIcon icon={faCaretLeft} />
+        </button>
+        <button
+          className="pb-nav__btn"
+          onClick={() => {
+            handleClick("next");
+          }}
+        >
+          <FontAwesomeIcon icon={faCaretRight} />
+        </button>
+      </nav>
+    </StyledContainer>
   );
 };

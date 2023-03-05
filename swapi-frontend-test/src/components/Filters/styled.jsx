@@ -2,9 +2,23 @@ import styled from "styled-components";
 
 export const StyledContainer = styled.div`
   .ft {
-    border: 2px solid yellow;
     margin: 15px;
     padding: 20px;
+    background-color: var(--bg-grey);
+    border-radius: 50px;
+  }
+
+  .ft-form {
+    display: flex;
+  }
+
+  .ft-form__box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ft-form__label {
+    font-size: 1rem;
   }
 
   .ft-form__select {

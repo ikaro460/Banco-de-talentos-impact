@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSwapi } from "../../providers/Swapi";
 import { StyledContainer } from "./styled";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const SearchBar = () => {
   const { setFilteredPeople, setLoading } = useSwapi();
@@ -30,17 +32,20 @@ export const SearchBar = () => {
   }
 
   return (
-    <StyledContainer className="sb-ctn">
-      <input
-        className="sb-ctn__text"
-        type="text"
-        placeholder="Search here"
-        onChange={handleChange}
-        value={searchInput}
-      />
-      <button className="sb-ctn__btn" onClick={handleClick}>
-        Search
-      </button>
+    <StyledContainer>
+      <form className="sb-ctn">
+        <input
+          className="sb-ctn__input"
+          type="text"
+          placeholder="Search here"
+          name="q"
+          onChange={handleChange}
+          value={searchInput}
+        />
+        <button className="sb-ctn__btn" onClick={handleClick}>
+          <FontAwesomeIcon icon={faSearch} size="2x" className="search-icon" />
+        </button>
+      </form>
     </StyledContainer>
   );
 };

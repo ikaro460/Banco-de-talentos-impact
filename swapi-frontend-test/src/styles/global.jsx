@@ -6,13 +6,15 @@ export default createGlobalStyle`
   //GLOBAL COLOR PALETTE
   
   :root {
-        --background-black: #000000;
-        --main-yellow: #FFE81F;
+        --bg-black: #000;
+        --tp-black: rgba(0, 0, 0, 0.5);
+        --bg-grey: rgb(29,30,31);
+        --main-yellow: #dba90d;
         --post-white: #fff;
         --title-blue: #29325D;
         --text-grey: #666;
         --button-grey: #e8e8e8;
-        --purple-1: #6c80be
+        --purple-1: #6c80be;
     }
 
   #root{
@@ -20,11 +22,11 @@ export default createGlobalStyle`
   }
   
   body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: var(--post-white);
     display: flex;
     justify-content: center;
     font-weight: 400;
-    font-family: sans-serif, "Source Sans Pro";
     background-image: url(${backgroundImage});
 }
   .App-header {
