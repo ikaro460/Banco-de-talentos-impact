@@ -7,9 +7,9 @@ export const StyledContainer = styled.div`
     display: flex;
     align-items: center;
     border: 2px solid var(--main-yellow);
-    border-radius: 50px;
+    border-radius: 2px;
     height: var(--size);
-    padding: 1px 3px;
+    padding: 1px 5px;
   }
 
   .sb-ctn__input {
@@ -28,6 +28,8 @@ export const StyledContainer = styled.div`
   }
 
   .sb-ctn__btn {
+    cursor: pointer;
+    box-shadow: 0 0px 15px var(--sd-yellow);
     font-size: 0.7rem;
     display: flex;
     align-items: center;
@@ -36,14 +38,17 @@ export const StyledContainer = styled.div`
     background: none;
     color: var(--post-white);
     border-radius: 50%;
-    cursor: pointer;
     width: calc(var(--size) - 2px);
     height: calc(var(--size) - 2px);
     margin-left: auto;
-    transition: background-color 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
   }
 
   .sb-ctn__btn:hover {
-    background-color: var(--main-yellow);
+    box-shadow: 0 2px 15px var(--sd-yellow);
+  }
+
+  .sb-closed {
+    margin: 0 23px;
   }
 `;

@@ -20,7 +20,7 @@ export const StyledContainer = styled.div`
     }
 
     :hover {
-      box-shadow: 0 0px 6px rgba(255, 255, 255, 0.299);
+      box-shadow: 0 0px 15px var(--sd-yellow);
     }
   }
 

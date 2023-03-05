@@ -9,12 +9,15 @@ export default createGlobalStyle`
         --bg-black: #000;
         --tp-black: rgba(0, 0, 0, 0.5);
         --bg-grey: rgb(29,30,31);
-        --main-yellow: #dba90d;
+        --main-yellow: rgb(219, 169, 13);
         --post-white: #fff;
         --title-blue: #29325D;
         --text-grey: #666;
         --button-grey: #e8e8e8;
         --purple-1: #6c80be;
+        
+        //shadows
+        --sd-yellow: rgba(219, 169, 13, 0.2);
     }
 
   #root{
