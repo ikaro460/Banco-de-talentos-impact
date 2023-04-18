@@ -56,7 +56,6 @@ export const CharacterList = () => {
   return (
     <StyledContainer>
       <div className="cl-list">
-        <h2 className="cl-list__title">Character List</h2>
         <ul className="cl-list__box">
           {paginatedItems.map((element, index) => {
             console.log(element);
